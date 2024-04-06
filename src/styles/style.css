@@ -1,0 +1,76 @@
+.header-container {
+  background-color: orange; /* Warna latar belakang header */
+  color: #fff; /* Warna teks putih */
+  padding: 20px; /* Padding header */
+}
+
+.header-content {
+  max-width: 1200px; /* Lebar maksimum konten header */
+  margin: 0 auto; /* Posisi tengah horizontal */
+}
+
+.header-title {
+  font-size: 36px; /* Ukuran font judul */
+  margin: 0; /* Hilangkan margin atas dan bawah */
+}
+
+.footer-container {
+  background-color: #f8f9fa; /* Warna latar belakang footer */
+  color: #333; /* Warna teks */
+  padding: 20px; /* Padding footer */
+  text-align: center; /* Posisi teks ke tengah */
+}
+
+.footer-nav ul {
+  list-style: none; /* Hilangkan bullets */
+  padding: 0; /* Hilangkan padding */
+}
+
+.footer-nav li {
+  display: inline-block; /* Tampilkan menu secara horizontal */
+  margin-right: 20px; /* Jarak antar menu */
+}
+
+.footer-nav a {
+  color: #333; /* Warna teks menu */
+  text-decoration: none; /* Hilangkan garis bawah */
+}
+
+.footer-nav a:hover {
+  color: #007bff; /* Warna teks menu saat digulirkan */
+}
+
+
+.login-form {
+  width: 400px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #f9f9f9; /* Warna latar belakang abu-abu muda */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+}
+
+.input-field {
+  width: 90%;
+  margin-bottom: 15px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd; /* Warna border lebih lembut */
+  border-radius: 3px;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: orange; /* Warna tombol oranye */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s; /* Efek transisi saat digulirkan */
+}
+
+.submit-button:hover {
+  background-color: #ff6600; /* Warna tombol oranye yang lebih gelap saat digulirkan */
+}
