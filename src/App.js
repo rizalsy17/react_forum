@@ -8,6 +8,7 @@ import ThreadList from './components/Threads/ThreadList';
 import ThreadDetail from './components/Threads/ThreadDetail';
 import CreateThreadForm from './components/Threads/CreateThreadForm';
 import CreateCommentForm from './components/Comments/CreateCommentForm';
+import LeaderboardList from './components/Leaderboard/LeaderboardList';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
         <Routes>
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
-          <Route path="/threads" element={<ThreadList />} />
+          <Route path="/" element={<ThreadList />} />
           <Route path="/threads/:id" element={<ThreadDetail />} />
           <Route path="/create-thread" element={<CreateThreadForm />} />
           <Route path="/create-comment/:id" element={<CreateCommentForm />} />
+          <Route path="/leaderboard" element={<LeaderboardList />} />
         </Routes>
         <Footer />
       </div>

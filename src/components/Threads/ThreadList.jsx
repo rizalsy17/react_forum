@@ -1,41 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { getAllThreads } from '../../api/api'; // import API function
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchThreads } from '../Actions/ThreadAction'; 
 
 function ThreadList() {
-  const [threads, setThreads] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const threads = useSelector(state => state.thread.threads); 
+  const isLoading = useSelector(state => state.thread.loading); 
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getAllThreads();
-        setThreads(response.data.threads);
-        setIsLoading(false); // Set isLoading to false when data is loaded
-      } catch (error) {
-        console.error(error); // handle error
-      }
-    };
-    fetchData();
-  }, []);
+    dispatch(fetchThreads()); 
+  }, [dispatch]);
 
+  
   return (
-    <div>
-      <h2>Thread List</h2>
+    <div className="container">
+      <h2 className="title">Thread List</h2>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
+        <div className="discussions-container">
           {threads.map((thread) => (
-            <li key={thread.id}>
-              <h3>{thread.title}</h3>
-              <p>{thread.body}</p>
-              <p>Created at: {thread.createdAt}</p>
-              <p>Total Comments: {thread.totalComments}</p>
-              <p>Owner: {thread.owner.name}</p>
-              {thread.owner.avatar && <img src={thread.owner.avatar} alt="Avatar" />}
-            </li>
+            <div key={thread.id} className="discussion-card">
+              <div className="discussion-header">
+                <h3 className="discussion-title">{thread.title}</h3>
+                <p className="created-by">Created by: {thread.ownerName}</p>
+              </div>
+              <div className="discussion-body">
+                <p className="discussion-content">{thread.body}</p>
+              </div>
+              <div className="discussion-footer">
+                <button className="action-button">Like</button>
+                <button className="action-button">Unlike</button>
+                <button className="action-button">Share</button>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

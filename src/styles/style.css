@@ -1,61 +1,68 @@
+
 .header-container {
-  background-color: orange; /* Warna latar belakang header */
-  color: #fff; /* Warna teks putih */
-  padding: 20px; /* Padding header */
+  background-color: orange;
+  color: #fff;
+  padding: 20px;
 }
 
 .header-content {
-  max-width: 1200px; /* Lebar maksimum konten header */
-  margin: 0 auto; /* Posisi tengah horizontal */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .header-title {
-  font-size: 36px; /* Ukuran font judul */
-  margin: 0; /* Hilangkan margin atas dan bawah */
+  font-size: 36px;
+  margin: 0;
 }
 
 .footer-container {
-  background-color: #f8f9fa; /* Warna latar belakang footer */
-  color: #333; /* Warna teks */
-  padding: 20px; /* Padding footer */
-  text-align: center; /* Posisi teks ke tengah */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px; /* Menentukan tinggi footer */
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 20px;
+  text-align: center;
+  z-index: 100; /* Menambahkan z-index agar footer tetap di bagian bawah */
 }
 
 .footer-nav ul {
-  list-style: none; /* Hilangkan bullets */
-  padding: 0; /* Hilangkan padding */
+  list-style: none;
+  padding: 0;
 }
 
 .footer-nav li {
-  display: inline-block; /* Tampilkan menu secara horizontal */
-  margin-right: 20px; /* Jarak antar menu */
+  display: inline-block;
+  margin-right: 20px;
 }
 
 .footer-nav a {
-  color: #333; /* Warna teks menu */
-  text-decoration: none; /* Hilangkan garis bawah */
+  color: #333;
+  text-decoration: none;
 }
 
 .footer-nav a:hover {
-  color: #007bff; /* Warna teks menu saat digulirkan */
+  color: #007bff;
 }
-
 
 .login-form {
   width: 400px;
   margin: auto;
+  margin-top: 110px;
   padding: 20px;
   border-radius: 5px;
-  background-color: #f9f9f9; /* Warna latar belakang abu-abu muda */
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+  background-color: #f9f9f9;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .input-field {
-  width: 90%;
+  width: calc(100% - 20px); /* Lebar 100% dikurangi padding */
   margin-bottom: 15px;
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ddd; /* Warna border lebih lembut */
+  border: 1px solid #ddd;
   border-radius: 3px;
 }
 
@@ -63,14 +70,131 @@
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: orange; /* Warna tombol oranye */
+  background-color: orange;
   color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  transition: background-color 0.3s; /* Efek transisi saat digulirkan */
+  transition: background-color 0.3s;
 }
 
 .submit-button:hover {
-  background-color: #ff6600; /* Warna tombol oranye yang lebih gelap saat digulirkan */
+  background-color: #ff6600;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-bottom: 80px; /* Menambahkan padding-bottom sesuai dengan tinggi footer */
+  overflow-y: auto; /* Menambahkan overflow-y: auto agar konten dapat di-scroll */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.thread-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.thread-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.thread-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.thread-title {
+  font-size: 20px;
+  margin: 0;
+}
+
+.created-by {
+  font-style: italic;
+  color: #666;
+}
+
+.thread-body {
+  margin-bottom: 10px;
+}
+
+.thread-content {
+  margin: 0;
+}
+
+.thread-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-buttons {
+  display: flex;
+}
+
+.action-button {
+  padding: 8px 16px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+}
+
+.leaderboard-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-list {
+  list-style: none;
+  padding: 0;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.user-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.score-info {
+  flex: 1;
+  text-align: right;
+}
+
+.user-score {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
 }
