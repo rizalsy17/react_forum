@@ -1,3 +1,4 @@
+// login form
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../Actions/AuthAction';
@@ -5,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Mendapatkan fungsi navigate dari react-router-dom
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,13 +14,21 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(login(email, password));
-      navigate('/'); // Mengarahkan pengguna ke halaman utama setelah login berhasil
+      console.log("Email:", email); 
+      console.log("Password:", password); 
+      const response = await dispatch(login(email, password)); 
+      console.log("Response from server:", response); 
+
+      if (response && response.data && response.data.token) { 
+        navigate('/');
+      } else {
+        setError('Email atau password salah');
+      }
     } catch (error) {
-      setError('Email atau password salah');
+      setError('Terjadi kesalahan saat melakukan login. Mohon coba lagi.');
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <h2 style={{ textAlign: 'center' }}>Masuk Akun</h2>
@@ -31,6 +40,7 @@ function LoginForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
           className="form-control input-field"
+          required
         />
       </div>
       <div className="form-group">
@@ -40,6 +50,7 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           className="form-control input-field"
+          required
         />
       </div>
       <button type="submit" className="btn btn-primary submit-button">Login</button>

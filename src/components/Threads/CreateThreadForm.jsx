@@ -1,28 +1,47 @@
 import React, { useState } from 'react';
-import { createThread } from '../../api/api'; // import API function
+import { useNavigate, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux'; // Tambahkan import useDispatch
+import { createNewThread } from '../Actions/ThreadAction'; // Ganti import
 
 function CreateThreadForm() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [category, setCategory] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await createThread(title, body, category);
-      console.log(response); // handle success
+      if (!title.trim() || !body.trim()) { 
+        alert('Judul dan Body tidak boleh kosong!');
+        return;
+      }
+      await dispatch(createNewThread(title, body, category));
+      navigate('/');
     } catch (error) {
-      console.error(error); // handle error
+      console.error(error);
     }
   };
+  
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
-      <textarea value={body} onChange={(e) => setBody(e.target.value)} placeholder="Body"></textarea>
-      <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" />
-      <button type="submit">Create Thread</button>
-    </form>
+    <>
+      <Link to="/" className="home-link" style={{ position: 'absolute', top: '20px', left: '20px', zIndex: '999' }}>
+        <FontAwesomeIcon icon={faHome} />
+      </Link>
+      <div className="create-thread-container">
+        <form className="create-thread-form" onSubmit={handleSubmit}>
+          <h2>Tambah Diskusi</h2>
+          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Judul" />
+          <textarea value={body} onChange={(e) => setBody(e.target.value)} ></textarea>
+          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Kategori" />
+          <button type="submit">Buat Diskusi</button>
+        </form>
+      </div>
+    </>
   );
 }
 

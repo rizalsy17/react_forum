@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../Actions/AuthAction';
 
 function RegisterForm() {
@@ -8,22 +8,43 @@ function RegisterForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+  const [loading, setLoading] = useState(false);
+  const authError = useSelector(state => state.auth.error);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      await dispatch(register(name, email, password));
+      if (!name || !email || !password) {
+        throw new Error('Nama, email, dan password harus diisi.');
+      }
+      const response = await dispatch(register(name, email, password));
+      if (response) {
+        navigate('/login');
+        console.log('Registrasi berhasil');
+        return;
+      } else {
+        throw new Error('Gagal melakukan registrasi. Mohon coba lagi.');
+      }
     } catch (error) {
-      setError(error.message); // Tampilkan pesan kesalahan
+      // Tangani kesalahan
+      let errorMessage = error.message || 'Terjadi kesalahan saat memproses registrasi. Mohon coba lagi.';
+      setError(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
-
+  
+  
+  
+  
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <h2 style={{ textAlign: 'center' }}>Daftar Akun Baru</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {loading && <p style={{ textAlign: 'center' }}>Loading...</p>}
+      {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
       <div className="form-group">
         <input
           type="text"
@@ -51,8 +72,8 @@ function RegisterForm() {
           className="form-control input-field"
         />
       </div>
-      <button type="submit" className="btn btn-primary submit-button">Register</button>
-      <p>Sudah punya akun? <Link to="/login">Masuk di sini</Link></p>
+      <button type="submit" className="btn btn-primary submit-button" disabled={loading}>Register</button>
+      <p style={{ textAlign: 'center' }}>Sudah punya akun? <Link to="/login">Masuk di sini</Link></p>
     </form>
   );
 }

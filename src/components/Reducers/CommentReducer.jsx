@@ -11,6 +11,7 @@ import {
 
 const initialState = {
   comments: [],
+  commentContent: '',
   error: null
 };
 
@@ -23,6 +24,9 @@ const commentReducer = (state = initialState, action) => {
         error: null
       };
     case CREATE_COMMENT_FAILURE:
+    case UPVOTE_COMMENT_FAILURE:
+    case DOWNVOTE_COMMENT_FAILURE:
+    case NEUTRALIZE_COMMENT_VOTE_FAILURE:
       return {
         ...state,
         error: action.payload
@@ -40,13 +44,6 @@ const commentReducer = (state = initialState, action) => {
         ...state,
         comments: updatedComments,
         error: null
-      };
-    case UPVOTE_COMMENT_FAILURE:
-    case DOWNVOTE_COMMENT_FAILURE:
-    case NEUTRALIZE_COMMENT_VOTE_FAILURE:
-      return {
-        ...state,
-        error: action.payload
       };
     default:
       return state;
